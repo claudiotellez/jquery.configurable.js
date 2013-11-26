@@ -1,0 +1,231 @@
+<html>
+
+<head>
+
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<script src="jquery-1.10.2.min.js"></script>
+<script src="jquery.configurable.js"></script>
+
+<style>
+
+	html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video{margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display: block;}body{line-height: 1;}ol, ul{list-style: none;}blockquote, q{quotes: none;}blockquote:before, blockquote:after,q:before, q:after{content: '';content: none;}table{border-collapse: collapse;border-spacing: 0;}
+
+	body {
+		font-family: 'Roboto Condensed', sans-serif;
+		letter-spacing: -.06em;
+		color: white;
+		background: #1D1E1E;
+	}
+	header {
+		padding: 20px 0;
+	}
+	header h2 { color: #ccc; }
+	section {
+		text-align: center;
+		padding: 20px 0;
+		border-top: 5px solid #333;
+	}
+	footer {}
+	h1 {
+		font-size: 40px;
+		font-weight: normal;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	h2 {
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+		letter-spacing: 0;
+		margin-bottom: 10px;
+	}
+	.logger {
+		width: 500px;
+		display: inline-block;
+		color: #666;
+		text-align: center;
+		background: black;
+		border: 1px solid #313131;
+		padding: 10px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	
+	#configurable1 { margin-bottom: 20px; }
+	#configurable1 .part { text-align: center; }
+	#configurable1 .part .option {
+		display: inline-block;
+		background: #333;
+		color: #ccc;
+		padding: 4px 10px;
+		margin: 0 3px;
+		cursor: pointer;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	#configurable1 .part .option:hover {
+		background: #666;
+	}
+	#configurable1 .part .option.selected {
+		color: #333;
+		background: #999;
+	}
+
+	#configurable2 {
+		margin-bottom: 20px;
+	}
+	#configurable2 .part {
+		display: inline-block;
+		text-align: center;
+		margin: 0 5px;
+		padding: 5px 5px 3px;
+		background: #262626;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	#configurable2 .part .option {
+		display: inline-block;
+		background: #333;
+		color: #ccc;
+		padding: 10px 10px;
+		margin: 0 3px;
+		cursor: pointer;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	#configurable2 .part .option:hover {
+		background: #666;
+	}
+	#configurable2 .part .option.selected {
+		color: #333;
+		background: #999;
+	}
+
+</style>
+
+</head>
+
+<body>
+
+	<header>
+		<h1>jquery.configurable.js</h1>
+	</header>
+
+	<section>
+
+		<h2>Single Part</h2>
+
+		<div class="configurable" id="configurable1">
+
+			<ul class="part">
+				<li class="option">Option 1</li>
+				<li class="option">Option 2</li>
+				<li class="option">Option 3</li>
+				<li class="option">Option 4</li>
+				<li class="option">Option 5</li>
+			</ul>
+
+		</div>
+		
+		<div id="logger1" class="logger">Text</div>
+
+	</section>
+	
+	<section>
+
+		<h2>Multiple Parts</h2>
+
+		<div class="configurable" id="configurable2">
+
+			<ul class="part">
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+			</ul>
+			
+			<ul class="part">
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+			</ul>
+			
+			<ul class="part">
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+			</ul>
+			
+			<ul class="part">
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+				<li class="option"></li>
+			</ul>
+
+		</div>
+		
+		<div id="logger2" class="logger">Text</div>
+
+	</section>
+
+	<footer></footer>
+	
+	<script>
+	
+	$(function() {
+		
+		$('.configurable').Configurable({
+
+			onInit: function( e ) {
+
+				var conf = e.target
+				
+				$( conf ).find('.option').each(function( k, v ) {
+
+					var t = $( v );
+
+					t.click(function() {
+						$( conf ).Configurable('setPartOption', { part_id: t.closest('.part').index(), option_id: t.index() } );
+					});
+
+				})
+	
+			},
+
+			onSetPartOption: function( e ) {
+				
+				var output = [];
+				
+				$.each( e.configuration, function(k,v) {
+					output.push( k + ': ' + v );
+				} );
+				
+				$( e.target.parentNode ).find('.logger').each(function() {
+					$(this).html( ' [ ' + output.join(' ] [ ') + ' ] ' );
+				});
+
+			}
+		});
+		
+	});
+	
+	</script>
+
+</body>
+
+</html>
